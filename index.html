@@ -33,7 +33,6 @@
         .movie-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(3, 1fr);
             gap: 15px;
             margin: 30px auto;
             max-width: 1100px;
@@ -54,12 +53,6 @@
             align-items: center;
             justify-content: center;
             min-height: 60px;
-        }
-
-        .movie-card:hover {
-            border-color: var(--gold);
-            color: white;
-            background: rgba(179, 0, 0, 0.2);
         }
 
         .movie-card.selected {
@@ -85,31 +78,38 @@
         .seat-row {
             margin: 10px 0;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            gap: 5px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
             justify-items: center;
         }
 
         .seat {
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             background-color: #333;
             border: 2px solid #555;
             border-radius: 8px 8px 2px 2px;
-            margin: 0;
             cursor: pointer;
             transition: 0.2s;
-        }
-
-        .seat:hover {
-            border-color: var(--gold);
         }
 
         .seat.selected {
             background-color: var(--cinema-red);
             border-color: var(--gold);
             box-shadow: 0 0 10px var(--cinema-red);
+        }
+
+        /* Name Input Styling */
+        .vip-input {
+            margin-top: 25px;
+            padding: 12px;
+            width: 80%;
+            background: #111;
+            border: 1px solid var(--gold);
+            color: white;
+            text-align: center;
+            font-family: 'Oswald';
+            font-size: 1rem;
         }
 
         .ticket-btn {
@@ -130,17 +130,10 @@
             box-shadow: 0 0 20px var(--cinema-red);
         }
 
-        /* Video/Image Styling */
         .trailer iframe {
             border: 5px solid #222;
             box-shadow: 0 0 40px rgba(0,0,0,0.9);
             max-width: 100%;
-        }
-
-        .poster-img {
-            border: 3px solid var(--gold);
-            margin: 20px 0;
-            max-width: 300px;
         }
 
         table {
@@ -182,14 +175,18 @@
         <h3 id="booking-title">Booking for: THE BLOODY WAR</h3>
         <p>Select your VIP seats below:</p>
         <div class="seat-row">
-            <button class="seat" onclick="toggleSeat(this)" title="button1"></button>
-            <button class="seat" onclick="toggleSeat(this)" title="button2"></button>
-            <button class="seat" onclick="toggleSeat(this)" title="button3"></button>
-            <button class="seat" onclick="toggleSeat(this)" title="button4"></button>
-            <button class="seat" onclick="toggleSeat(this)" title="button5"></button>
-            <button class="seat" onclick="toggleSeat(this)" title="button6"></button>
+            <button class="seat" onclick="toggleSeat(this)"></button>
+            <button class="seat" onclick="toggleSeat(this)"></button>
+            <button class="seat" onclick="toggleSeat(this)"></button>
+            <button class="seat" onclick="toggleSeat(this)"></button>
+            <button class="seat" onclick="toggleSeat(this)"></button>
+            <button class="seat" onclick="toggleSeat(this)"></button>
         </div>
-        <button class="ticket-btn" onclick="buyTickets()">Get Tickets Now</button>
+
+        <input type="text" id="userNameInput" class="vip-input" placeholder="ENTER NAME FOR VIP LIST">
+
+        <br>
+        <button class="ticket-btn" onclick="buyTickets()">Get Tickets & Go VIP</button>
     </div>
 
     <hr style="border: 0; height: 1px; background: var(--gold); margin: 40px auto; width: 60%;">
@@ -200,9 +197,7 @@
     </div>
 
     <section style="max-width: 800px; margin: 40px auto; line-height: 1.6;">
-        <img src="https://cdn.pixabay.com/photo/2023/03/16/13/29/wedding-7856700_150.jpg" class="poster-img" alt="Keith Movie Poster">
         <p>He needs no introduction—he is the monumental slayer of dragons, the man, the myth: <b>Czar Keith</b>.</p>
-        <p><i>The Bloody War</i> opens with a scene of high tension in Afghanistan, situating the viewer exactly where they would never want to be. Nominations are across the globe—Red Carpet entrance expected today.</p>
     </section>
 
     <h3>Release Schedule</h3>
@@ -224,36 +219,41 @@
     <script>
         let selectedMovie = "THE BLOODY WAR";
 
-        // Logic to select a movie
         function selectMovie(element, movieTitle) {
-            // Unselect others
-            document.querySelectorAll('.movie-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            // Select this one
+            document.querySelectorAll('.movie-card').forEach(card => card.classList.remove('selected'));
             element.classList.add('selected');
             selectedMovie = movieTitle;
             document.getElementById('booking-title').innerText = "Booking for: " + movieTitle;
         }
 
-        // Logic to select seats
         function toggleSeat(element) {
             element.classList.toggle("selected");
         }
 
-        // Final booking logic
+        // NEW LOGIC TO REDIRECT TO VIP PAGE
         function buyTickets() {
             const count = document.querySelectorAll('.seat.selected').length;
+            const name = document.getElementById('userNameInput').value;
+
             if (count === 0) {
                 alert("Please select a VIP seat first!");
-            } else {
-                let name = prompt("Enter your name for the VIP List:");
-                if (name) {
-                    alert("Congratulations " + name + "!\n\nYou have reserved " + count + " VIP seat(s) for " + selectedMovie + ".\n\nSee you at the Red Carpet!");
-                }
+                return;
             }
+
+            if (name.trim() === "") {
+                alert("Czar Keith requires a name for the guest list!");
+                return;
+            }
+
+            // Save data for the next page
+            localStorage.setItem('vipName', name);
+            localStorage.setItem('selectedMovie', selectedMovie);
+
+            alert("Seat Reserved! Redirecting you to the VIP Access Portal...");
+            
+            // This assumes contact.html is in the same folder
+            window.location.href = "contact.html";
         }
     </script>
 </body>
 </html>
-
