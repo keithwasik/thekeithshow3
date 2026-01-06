@@ -1,50 +1,258 @@
-<DOCTYPE html>
-<html>
- <head>
- <meta charset="utp-8">
- <meta name="viewpoint" content="width=device=width,intial-scale=1">
- <title>KEITH</title>
- </head>
- <style>
- body {
-     background-image:url('https://i.ibb.co/Wkj0Ghd/yes.jpg');
-       background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-       background-size:100% 100%
- }
- </style>
- <body>
-  <h1>KEITH SHOW</h1>
-   <p>(dreaming is free)</p>
-   <p><b>!!!GET YOUR TICKETS !!!!</b></p>
-    <img src="https://cdn.pixabay.com/photo/2023/03/16/13/29/wedding-7856700_150.jpg"border="2">
-  <p>The actor that brought you <ul><li>Men vs Boys</li> <li>Dragon Rage</li> <li>Bachelor</li> <li>Guns Blazing</li> <li>Hell Cast</li> <li>Sunman</li> <li>The Affaire <li>Groom</li> <li>Mercenary</li><li>Redemption</li><li>Award Wining "The Dreamer"</li>
-    <br>He needs no introduction he is the monumental the slayer of dragons,the man the myth am talking about Czar Keith.
-    <br>The tickets are out and you can watch him in his new role in epic,thriller,breath-taking movie the <b>THE BLOODY WAR</b>
-    <br>The movie which has been nominated in multiple awards will now be available in all cinemas across the globe.
-   <br>The star is expected to make a grand entrance into the Red Carpet today.
- <h2>THE BLOODY WAR</h2>
-  <p>This movie starring <i>Keith</i> opens with a scene of high tension that soon situates the viewer exactly where he or she would never want to be.
-    In Afghanistan, a group of peacekeepers is scouring a patch of barren land, walking in a narrow, evenly-spaced line. 
-    The better not to get blown up by a land mine. Their work is methodical. The soldiers are in constant contact with their base
-    and its commanders and intel officers are providing calm, expert guidance. But of course something bad is going to happen. 
-    And something bad does happen, and the consequences weigh heavily on the commanding officer, Claus Pedersen. 
-     Out of a sense of guilt, and more overtly to make up for the absence of a shell-shocked soldier whom he’s decided to put on camp 
-     patrol, Pedersen begins accompanying his troops on their away-from-base rounds. He doesn’t know it, but he’s setting himself up for a fall.
- </p>
- <br>
- <h3><u>MOVIE SCHEDULE</u></h3>
-   <table border="10">
-       <tr>
-         <th>CITY</th>
-		 <th>RELEASE DATE</th>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEITH - THE CINEMA EXPERIENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cinema-red: #b30000;
+            --gold: #d4af37;
+            --dark-bg: #050505;
+        }
+
+        body {
+            text-align: center;
+            background: radial-gradient(circle, #2c0000 0%, var(--dark-bg) 100%);
+            color: #e0e0e0;
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+
+        /* Movie Selection Grid */
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px auto;
+            max-width: 1100px;
+            place-items: center;
+        }
+
+        .movie-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            padding: 15px;
+            width: 140px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            color: #bbb;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+        }
+
+        .movie-card:hover {
+            border-color: var(--gold);
+            color: white;
+            background: rgba(179, 0, 0, 0.2);
+        }
+
+        .movie-card.selected {
+            background: var(--cinema-red);
+            color: white;
+            box-shadow: 0 0 20px var(--cinema-red);
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        /* Booking Area */
+        .booking-container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            display: inline-block;
+            margin: 20px 0;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .seat-row {
+            margin: 10px 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 5px;
+            justify-items: center;
+        }
+
+        .seat {
+            width: 35px;
+            height: 35px;
+            background-color: #333;
+            border: 2px solid #555;
+            border-radius: 8px 8px 2px 2px;
+            margin: 0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .seat:hover {
+            border-color: var(--gold);
+        }
+
+        .seat.selected {
+            background-color: var(--cinema-red);
+            border-color: var(--gold);
+            box-shadow: 0 0 10px var(--cinema-red);
+        }
+
+        .ticket-btn {
+            background-color: var(--cinema-red);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: 2px solid var(--gold);
+            cursor: pointer;
+            margin-top: 20px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .ticket-btn:hover {
+            background-color: #ff0000;
+            box-shadow: 0 0 20px var(--cinema-red);
+        }
+
+        /* Video/Image Styling */
+        .trailer iframe {
+            border: 5px solid #222;
+            box-shadow: 0 0 40px rgba(0,0,0,0.9);
+            max-width: 100%;
+        }
+
+        .poster-img {
+            border: 3px solid var(--gold);
+            margin: 20px 0;
+            max-width: 300px;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: #111;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--gold);
+        }
+
+        th { background: var(--cinema-red); }
+
+        .tagline { color: var(--gold); font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>KEITH SHOW</h1>
+        <p class="tagline">"Dreaming is Free"</p>
+    </header>
+
+    <h3>Step 1: Select Your Movie</h3>
+    <div class="movie-grid">
+        <div class="movie-card selected" onclick="selectMovie(this, 'THE BLOODY WAR')">THE BLOODY WAR</div>
+        <div class="movie-card" onclick="selectMovie(this, 'Men vs Boys')">Men vs Boys</div>
+        <div class="movie-card" onclick="selectMovie(this, 'Dragon Rage')">Dragon Rage</div>
+        <div class="movie-card" onclick="selectMovie(this, 'Bachelor')">Bachelor</div>
+        <div class="movie-card" onclick="selectMovie(this, 'Guns Blazing')">Guns Blazing</div>
+        <div class="movie-card" onclick="selectMovie(this, 'Hell Cast')">Hell Cast</div>
+    </div>
+
+    <div class="booking-container">
+        <h3 id="booking-title">Booking for: THE BLOODY WAR</h3>
+        <p>Select your VIP seats below:</p>
+        <div class="seat-row">
+            <button class="seat" onclick="toggleSeat(this)" title="button1"></button>
+            <button class="seat" onclick="toggleSeat(this)" title="button2"></button>
+            <button class="seat" onclick="toggleSeat(this)" title="button3"></button>
+            <button class="seat" onclick="toggleSeat(this)" title="button4"></button>
+            <button class="seat" onclick="toggleSeat(this)" title="button5"></button>
+            <button class="seat" onclick="toggleSeat(this)" title="button6"></button>
+        </div>
+        <button class="ticket-btn" onclick="buyTickets()">Get Tickets Now</button>
+    </div>
+
+    <hr style="border: 0; height: 1px; background: var(--gold); margin: 40px auto; width: 60%;">
+
+    <div class="trailer">
+        <h3>Watch the Trailer</h3>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/QUQ0Vj2YF0s" title="The Hurt Locker Trailer" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <section style="max-width: 800px; margin: 40px auto; line-height: 1.6;">
+        <img src="https://cdn.pixabay.com/photo/2023/03/16/13/29/wedding-7856700_150.jpg" class="poster-img" alt="Keith Movie Poster">
+        <p>He needs no introduction—he is the monumental slayer of dragons, the man, the myth: <b>Czar Keith</b>.</p>
+        <p><i>The Bloody War</i> opens with a scene of high tension in Afghanistan, situating the viewer exactly where they would never want to be. Nominations are across the globe—Red Carpet entrance expected today.</p>
+    </section>
+
+    <h3>Release Schedule</h3>
+    <table>
+        <tr>
+            <th>CITY</th>
+            <th>DATE</th>
         </tr>
-		<tr>
-		  <th>NAIROBI</th>
-		  <th>02/04/2024</th> 
-		  </tr>
- </table>
- </body>
+        <tr>
+            <td>NAIROBI</td>
+            <td>02/04/2024</td> 
+        </tr>
+    </table>
+
+    <footer>
+        <p>&copy; 2024 Keith Cinematic Universe</p>
+    </footer>
+
+    <script>
+        let selectedMovie = "THE BLOODY WAR";
+
+        // Logic to select a movie
+        function selectMovie(element, movieTitle) {
+            // Unselect others
+            document.querySelectorAll('.movie-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            // Select this one
+            element.classList.add('selected');
+            selectedMovie = movieTitle;
+            document.getElementById('booking-title').innerText = "Booking for: " + movieTitle;
+        }
+
+        // Logic to select seats
+        function toggleSeat(element) {
+            element.classList.toggle("selected");
+        }
+
+        // Final booking logic
+        function buyTickets() {
+            const count = document.querySelectorAll('.seat.selected').length;
+            if (count === 0) {
+                alert("Please select a VIP seat first!");
+            } else {
+                let name = prompt("Enter your name for the VIP List:");
+                if (name) {
+                    alert("Congratulations " + name + "!\n\nYou have reserved " + count + " VIP seat(s) for " + selectedMovie + ".\n\nSee you at the Red Carpet!");
+                }
+            }
+        }
+    </script>
+</body>
 </html>
- 
