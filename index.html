@@ -211,6 +211,29 @@
             <td>02/04/2024</td> 
         </tr>
     </table>
+    <div style="background: rgba(0,0,0,0.8); border: 1px solid var(--gold); padding: 10px; position: fixed; bottom: 20px; left: 20px; border-radius: 50px; display: flex; align-items: center; gap: 10px; z-index: 1000;">
+    <p style="margin: 0 10px; font-size: 0.7rem; color: var(--gold);">SOUNDTRACK: THE BLOODY WAR</p>
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
+    </audio>
+    <button onclick="toggleMusic()" id="musicBtn" style="background: var(--gold); border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-weight: bold;">▶</button>
+</div>
+
+<script>
+    function toggleMusic() {
+        var music = document.getElementById("bgMusic");
+        var btn = document.getElementById("musicBtn");
+        if (music.paused) {
+            music.play();
+            btn.innerHTML = "⏸";
+            btn.style.background = "#fff";
+        } else {
+            music.pause();
+            btn.innerHTML = "▶";
+            btn.style.background = "#d4af37";
+        }
+    }
+</script>
 
     <footer>
         <p>&copy; 2024 Keith Cinematic Universe</p>
@@ -257,3 +280,4 @@
     </script>
 </body>
 </html>
+
